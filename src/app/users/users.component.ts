@@ -20,7 +20,12 @@ export class UsersComponent implements OnInit {
   
   ngOnInit(): void {
     this.usersList 
-    this.usersListInitiale    
+    this.usersListInitiale 
+    //retreave data from local storage
+  //   const storedData = localStorage.getItem('usersList');
+  // if (storedData) {
+  //   this.usersList = JSON.parse(storedData);
+  // }   
   }
   openModalAjout(content:any){
     this.mode='Ajouter'
