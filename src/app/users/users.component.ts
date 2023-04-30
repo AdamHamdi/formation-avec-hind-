@@ -22,10 +22,10 @@ export class UsersComponent implements OnInit {
     this.usersList 
     this.usersListInitiale 
     //retreave data from local storage
-  //   const storedData = localStorage.getItem('usersList');
-  // if (storedData) {
-  //   this.usersList = JSON.parse(storedData);
-  // }   
+    const storedData = localStorage.getItem('usersList');
+  if (storedData) {
+    this.usersList = JSON.parse(storedData);
+  }   
   }
   openModalAjout(content:any){
     this.mode='Ajouter'
@@ -34,13 +34,15 @@ export class UsersComponent implements OnInit {
       {panelClass:'modal-sm', disableClose:true,hasBackdrop:true,autoFocus:true,closeOnNavigation:true})
   }
   createForm(data?:IUsers){
+    console.log('data',data);
+    
     return this.fb.group({
-      nom: ['',Validators.required],
-      prenom: ['',Validators.required],
-      date_naissance: ['',Validators.required],
-      numtel: ['',Validators.required],
-      email: ['',Validators.required],
-      adresse: ['',Validators.required],
+      nom: [data? data.nom: '',Validators.required],
+      prenom: [data? data.prenom:'',Validators.required],
+      date_naissance: [data? data.date_naissance:'',Validators.required],
+      numtel: [data? data.numtel:'',Validators.required],
+      email: [data? data.email:'',Validators.required],
+      adresse: [data? data.adresse:'',Validators.required],
     })
    
   }
