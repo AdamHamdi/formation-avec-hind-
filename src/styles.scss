@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+thead{
+    tr{
+        max-height: 30px!important;
+        th{
+            color: white;
+            padding: 6px 10px!important;
+        }
+    }
+}
+.btn-trp{
+    background-color: transparent;
+    outline: none;
+    border: 0;
+}
+.modal-sm {
+    width: 800px;
+    @media(max-width: 575px) {
+        .modal-sm {
+            width: 95% !important;
+        }
+    }
+}
+.mat-dialog-container {  
+   padding: 0!important;   
+}
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+

@@ -1,0 +1,123 @@
+<div class="row m-0 mb-2">
+    <div class="col-12 p-0">
+        <div class="d-flex justify-content-between align-items-center">
+            <h3>Liste des utilisateurs :</h3>
+            <button class="btn btn-success btn-sm" (click)="openModalAjout(addUser)">
+                <div class="d-flex  align-items-center">
+                <span class="material-symbols-outlined mr-2">add</span>
+                <span>Ajouter</span>
+            </div>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="row m-0 w-100">
+    <div class="col-12 px-0">
+        <div class="table-responsive">
+            <table class="table table-stripped table-bordered">
+                <thead class="bg-info ">
+                    <tr>
+                        <th>#</th>
+                        <th>Nom </th>
+                        <th>Prénom</th>
+                        <th> Date de naissance</th>
+                        <th> Email</th>
+                        <th> Numéro de téléphone</th>
+                        <th> Adresse</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of usersList; let i =index">
+                        <td>{{i+1}}</td>
+                        <td>{{user.nom}}</td>
+                        <td>{{user.prenom}}</td>
+                        <td>{{user.date_naissance}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.numtel}}</td>
+                        <td>{{user.adresse}}</td>
+                        <td>
+                            <div class="d-flex">
+                            <button class="btn btn-warning btn-sm mr-2" (click)="editUser( user, i,addUser)">
+                                <span class="material-symbols-outlined ">edit</span>
+                            </button>
+                            <button class="btn btn-danger btn-sm mr-2" (click)="deleteUser(i)">
+                                <span class="material-symbols-outlined  ">delete</span>
+                            </button>
+                        </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<ng-template #addUser>
+    <div class="row m-0">
+        <div class="col-12 p-0">
+            <div class="modal-head bg-info p-2">
+                <div class="d-flex justify-content-between align-items-center">
+                    
+                    <h3 class="text-white m-0">{{mode=='modifier'? 'Modifier cet utilisateur':'Ajouter un nouveau utilisateur'}}  </h3>
+                    <button class=" btn-trp" (click)=" closeModal()">
+                        <span class="material-symbols-outlined mr-2 text-white">close</span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row m-0" [formGroup]="userForm"(submit)="onSubmit()"> 
+                    <div class="col-md-6 col-12 px-1">
+                        <div class="form-group">
+                            <label for="">Nom <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" formControlName="nom" placeholder="Nom">
+                            <small class="text-danger" *ngIf="Nom?.errors && Nom?.touched">le champs doit etre rempli</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12 px-1">
+                        <div class="form-group">
+                            <label for="">Prénom <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" formControlName="prenom" placeholder="Prénom">
+                            <small class="text-danger" *ngIf="PreNom?.errors && PreNom?.touched">le champs doit etre rempli</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12 px-1">
+                        <div class="form-group">
+                            <label for="">Date de naissance<span class="text-danger">*</span></label>
+                            <input type="date" class="form-control" formControlName="date_naissance"  >
+                            <small class="text-danger" *ngIf="DateNaissance?.errors && DateNaissance?.touched">le champs doit etre rempli</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12 px-1">
+                        <div class="form-group">
+                            <label for="">Email <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" formControlName="email" placeholder="Email">
+                            <small class="text-danger" *ngIf="Email?.errors && Email?.touched">le champs doit etre rempli</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12 px-1">
+                        <div class="form-group">
+                            <label for="">Numéro de Téléphone <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" formControlName="numtel" placeholder="Numéro de Téléphone">
+                            <small class="text-danger" *ngIf="NumTel?.errors && NumTel?.touched ">le champs doit etre rempli</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12 px-1">
+                        <div class="form-group">
+                            <label for="">Adresse<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" formControlName="adresse" placeholder="Adresse">
+                            <small class="text-danger" *ngIf="Adresse?.errors && Adresse?.touched">le champs doit etre rempli</small>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="p-2 dialog-footer"> 
+                    <div class="d-flex justify-content-end align-items-center">
+                        <button class="btn btn-outline-secondary btn-sm mr-2" (click)=" closeModal()">Annuler</button>
+                        <button class="btn btn-success btn-sm" (click)="onSave()" type="submit">Valider</button>
+                    </div> 
+            </div>
+        </div>
+    </div>
+
+</ng-template>
